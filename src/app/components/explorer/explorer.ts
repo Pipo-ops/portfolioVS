@@ -1,6 +1,7 @@
 import { NgTemplateOutlet } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { NavigationService } from '../../shared/services/navigation';
 
 export interface FileNode {
   name: string;
@@ -9,7 +10,6 @@ export interface FileNode {
   iconColor?: string;
   children?: FileNode[];
   expanded?: boolean;
-  active?: boolean;
   targetId?: string;
 }
 
@@ -20,9 +20,13 @@ export interface FileNode {
   styleUrl: './explorer.scss',
 })
 export class Explorer {
+  private readonly nav = inject(NavigationService);
+
   protected readonly workspaceOpen = signal(true);
   protected readonly outlineOpen = signal(false);
   protected readonly timelineOpen = signal(false);
+
+  protected readonly activeId = this.nav.activeId;
 
   protected readonly tree = signal<FileNode[]>([
     {
@@ -43,7 +47,7 @@ export class Explorer {
         },
       ],
     },
-    { name: 'README.md', type: 'file', icon: 'description', iconColor: '#519aba', active: true, targetId: 'readme' },
+    { name: 'README.md', type: 'file', icon: 'description', iconColor: '#519aba', targetId: 'readme' },
     { name: 'LEGAL.md', type: 'file', icon: 'description', iconColor: '#858585', targetId: 'legal' },
     { name: 'IMPRINT.md', type: 'file', icon: 'description', iconColor: '#858585', targetId: 'imprint' },
   ]);
@@ -56,23 +60,7 @@ export class Explorer {
     }
 
     if (node.targetId) {
-      this.setActive(node);
-      document
-        .getElementById(node.targetId)
-        ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      this.nav.scrollTo(node.targetId);
     }
-  }
-
-  private setActive(target: FileNode): void {
-    const clear = (nodes: FileNode[]): void => {
-      for (const n of nodes) {
-        n.active = false;
-        if (n.children) clear(n.children);
-      }
-    };
-    const current = this.tree();
-    clear(current);
-    target.active = true;
-    this.tree.set([...current]);
   }
 }

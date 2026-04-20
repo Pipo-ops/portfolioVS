@@ -7,14 +7,13 @@
 
     <section class="editor-area">
       <app-tab-bar></app-tab-bar>
-      <div class="editor-content">
+      <div class="editor-content" #scrollRoot>
         <section id="readme">
           <app-hero></app-hero>
         </section>
 
-        <section id="about" class="placeholder">
-          <h2>&Uuml;ber mich</h2>
-          <p>Dieser Abschnitt wird in K&uuml;rze gef&uuml;llt.</p>
+        <section id="about">
+          <app-about></app-about>
         </section>
 
         <section id="skills" class="placeholder">

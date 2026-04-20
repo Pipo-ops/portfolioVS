@@ -1,0 +1,65 @@
+<div class="about">
+  <header class="about__header">
+    <p class="about__eyebrow">
+      <span class="about__comment">//</span> about.ts
+    </p>
+    <h2 class="about__title">&Uuml;ber mich</h2>
+  </header>
+
+  <div class="about__grid">
+    <div class="about__text">
+      <p>
+        Ich bin Phillip, Frontend-Entwickler aus &Ouml;sterreich. Als Quereinsteiger habe ich
+        mir das Programmieren aus Leidenschaft angeeignet &mdash; heute, mit rund drei Jahren
+        Erfahrung, baue ich Oberfl&auml;chen, die sich gut anf&uuml;hlen und zuverl&auml;ssig
+        funktionieren.
+      </p>
+      <p>
+        Kreativit&auml;t, Neugier und Disziplin sind mein Antrieb. Ich lerne schnell, arbeite
+        strukturiert und nehme jedes Code-Review als Chance, besser zu werden.
+      </p>
+      <p>
+        Jetzt suche ich ein Team, in dem ich mit echten Produkten Verantwortung &uuml;bernehmen
+        kann &mdash; und weiter wachse, Tag f&uuml;r Tag.
+      </p>
+    </div>
+
+    <aside class="about__card">
+      <div class="about__card-head">
+        <span class="about__dot about__dot--r"></span>
+        <span class="about__dot about__dot--y"></span>
+        <span class="about__dot about__dot--g"></span>
+        <span class="about__card-file">about.ts</span>
+      </div>
+<pre class="about__code"><span class="ln">1</span>  <span class="kw">export interface</span> <span class="ty">Developer</span> {{ '{' }}
+<span class="ln">2</span>    <span class="pr">name</span>: <span class="ty">string</span>;
+<span class="ln">3</span>    <span class="pr">role</span>: <span class="st">'Frontend-Entwickler'</span>;
+<span class="ln">4</span>    <span class="pr">location</span>: <span class="st">'&Ouml;sterreich'</span>;
+<span class="ln">5</span>    <span class="pr">drive</span>: <span class="ty">Array</span>&lt;<span class="st">'Kreativit&auml;t'</span> | <span class="st">'Neugier'</span> | <span class="st">'Disziplin'</span>&gt;;
+<span class="ln">6</span>    <span class="pr">available</span>: <span class="ty">boolean</span>;
+<span class="ln">7</span>  {{ '}' }}
+<span class="ln">8</span>
+<span class="ln">9</span>  <span class="kw">export const</span> <span class="vr">phillip</span>: <span class="ty">Developer</span> = {{ '{' }}
+<span class="ln">10</span>   <span class="pr">name</span>: <span class="st">'Phillip Schuster'</span>,
+<span class="ln">11</span>   <span class="pr">role</span>: <span class="st">'Frontend-Entwickler'</span>,
+<span class="ln">12</span>   <span class="cm">// coming soon: Backend-Entwickler</span>
+<span class="ln">13</span>   <span class="cm">// result: Fullstack</span>
+<span class="ln">14</span>   <span class="pr">location</span>: <span class="st">'&Ouml;sterreich'</span>,
+<span class="ln">15</span>   <span class="pr">drive</span>: [<span class="st">'Kreativit&auml;t'</span>, <span class="st">'Neugier'</span>, <span class="st">'Disziplin'</span>],
+<span class="ln">16</span>   <span class="pr">available</span>: <span class="kw">true</span>,
+<span class="ln">17</span> {{ '}' }};</pre>
+    </aside>
+  </div>
+
+  <ul class="about__values">
+    @for (value of values; track value.title) {
+      <li class="value">
+        <mat-icon class="value__icon" [fontIcon]="value.icon"></mat-icon>
+        <div>
+          <h3 class="value__title">{{ value.title }}</h3>
+          <p class="value__text">{{ value.text }}</p>
+        </div>
+      </li>
+    }
+  </ul>
+</div>
