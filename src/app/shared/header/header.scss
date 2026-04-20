@@ -1,0 +1,116 @@
+:host {
+  display: block;
+}
+
+.titlebar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  height: var(--titlebar-height);
+  background: var(--vscode-titlebar);
+  border-bottom: 1px solid var(--vscode-titlebar-border);
+  color: var(--vscode-text);
+  font-size: 12px;
+  user-select: none;
+  padding: 0 8px;
+}
+
+.titlebar__left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.titlebar__center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 0;
+}
+
+.titlebar__right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.logo {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0098ff 0%, #005fa3 100%);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: 4px;
+}
+
+.menu__item {
+  appearance: none;
+  background: transparent;
+  border: none;
+  color: var(--vscode-text);
+  font: inherit;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.menu__item:hover {
+  background: var(--vscode-hover);
+}
+
+.search {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 22px;
+  padding: 0 10px;
+  min-width: 320px;
+  max-width: 520px;
+  background: #2d2d2d;
+  border: 1px solid #1f1f1f;
+  border-radius: 6px;
+  color: var(--vscode-text-muted);
+  cursor: text;
+}
+
+.search__icon {
+  font-size: 14px;
+  width: 14px;
+  height: 14px;
+  line-height: 14px;
+  color: var(--vscode-text-muted);
+}
+
+.search__text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 720px) {
+  .menu {
+    display: none;
+  }
+  .titlebar {
+    grid-template-columns: auto 1fr;
+  }
+  .titlebar__right {
+    display: none;
+  }
+}

@@ -1,0 +1,37 @@
+<div class="tab-bar">
+  <ul class="tabs" role="tablist">
+    @for (tab of tabs(); track tab.id) {
+      <li
+        class="tab"
+        [class.tab--active]="activeId() === tab.id"
+        role="tab"
+        [attr.aria-selected]="activeId() === tab.id"
+        (click)="select(tab.id)"
+      >
+        <mat-icon
+          class="tab__icon"
+          [style.color]="tab.iconColor"
+          [fontIcon]="tab.icon"
+        ></mat-icon>
+        <span class="tab__name">{{ tab.name }}</span>
+        <button
+          type="button"
+          class="tab__close"
+          [attr.aria-label]="'Close ' + tab.name"
+          (click)="close($event, tab.id)"
+        >
+          <mat-icon fontIcon="close"></mat-icon>
+        </button>
+      </li>
+    }
+  </ul>
+</div>
+
+<nav class="breadcrumbs" aria-label="breadcrumb">
+  @for (crumb of breadcrumbs(); track $index; let last = $last) {
+    <span class="breadcrumbs__crumb">{{ crumb }}</span>
+    @if (!last) {
+      <mat-icon class="breadcrumbs__sep" fontIcon="chevron_right"></mat-icon>
+    }
+  }
+</nav>

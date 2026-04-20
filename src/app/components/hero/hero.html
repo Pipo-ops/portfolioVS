@@ -1,0 +1,62 @@
+<section class="hero">
+  <div class="hero__glow hero__glow--a" aria-hidden="true"></div>
+  <div class="hero__glow hero__glow--b" aria-hidden="true"></div>
+
+  <div class="hero__inner">
+    <div class="hero__text">
+      <p class="hero__eyebrow">
+        <span class="hero__eyebrow-comment">//</span>
+        {{ role }} aus {{ location }}
+      </p>
+
+      <h1 class="hero__title">
+        Hallo, ich bin <span class="hero__name">{{ name }}</span>
+        <span class="hero__wave" aria-hidden="true">👋</span>
+      </h1>
+
+      <p class="hero__lead">
+        Ich entwickle moderne Web-Oberfl&auml;chen &mdash; unter anderem mit
+        <span class="hero__accent">Angular</span>,
+        <span class="hero__accent">TypeScript</span> und dem gesamten Frontend-Werkzeugkasten.
+        Jetzt suche ich die passende Gelegenheit, mein Handwerk in einem engagierten Team
+        einzubringen und mit jedem Projekt weiterzuwachsen.
+      </p>
+
+      <div class="hero__ctas">
+        <a class="btn btn--primary" [href]="primaryCta.href">
+          <span>{{ primaryCta.label }}</span>
+          <mat-icon class="btn__icon" [fontIcon]="primaryCta.icon"></mat-icon>
+        </a>
+        <a class="btn btn--ghost" [href]="secondaryCta.href">
+          <mat-icon class="btn__icon" [fontIcon]="secondaryCta.icon"></mat-icon>
+          <span>{{ secondaryCta.label }}</span>
+        </a>
+      </div>
+
+      <ul class="hero__socials">
+        @for (social of socials; track social.label) {
+          <li>
+            <a [href]="social.href" target="_blank" rel="noopener">
+              <mat-icon [fontIcon]="social.icon"></mat-icon>
+              <span>{{ social.label }}</span>
+            </a>
+          </li>
+        }
+      </ul>
+    </div>
+
+    <div class="hero__portrait">
+      <div class="hero__portrait-ring" aria-hidden="true"></div>
+      <img
+        class="hero__photo"
+        [src]="photo"
+        [alt]="name"
+        (error)="onImageError($event)"
+      />
+    </div>
+  </div>
+
+  <a class="hero__scroll" href="#about" aria-label="Scroll">
+    <mat-icon fontIcon="keyboard_arrow_down"></mat-icon>
+  </a>
+</section>

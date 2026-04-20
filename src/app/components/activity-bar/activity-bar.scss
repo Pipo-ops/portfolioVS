@@ -1,0 +1,73 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.activity-bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 48px;
+  height: 100%;
+  background: #333333;
+  border-right: 1px solid #1f1f1f;
+}
+
+.group {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  color: #858585;
+  cursor: pointer;
+  transition: color 120ms ease;
+}
+
+.item:hover {
+  color: #ffffff;
+}
+
+.item--active {
+  color: #ffffff;
+}
+
+.item--active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #ffffff;
+}
+
+.item__icon {
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+}
+
+.item__badge {
+  position: absolute;
+  top: 8px;
+  right: 6px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 8px;
+  background: #007acc;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 16px;
+  text-align: center;
+}

@@ -1,0 +1,132 @@
+:host {
+  display: block;
+  height: 100%;
+  width: 260px;
+  background: var(--vscode-sidebar);
+  border-right: 1px solid #1f1f1f;
+  overflow: hidden;
+}
+
+.explorer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  font-size: 13px;
+  color: var(--vscode-text);
+}
+
+.explorer__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: var(--vscode-text-muted);
+}
+
+.explorer__more {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  cursor: pointer;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.section__header {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  width: 100%;
+  padding: 4px 8px;
+  background: transparent;
+  border: none;
+  color: var(--vscode-text);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.section__header:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.section__chevron {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  color: var(--vscode-text-muted);
+}
+
+.section__title {
+  flex: 1;
+}
+
+.tree {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 8px;
+  overflow-y: auto;
+}
+
+.node {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 22px;
+  padding-right: 8px;
+  color: var(--vscode-text);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.node:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.node--active {
+  background: #37373d;
+  color: #ffffff;
+}
+
+.node__chevron {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  color: var(--vscode-text-muted);
+  flex-shrink: 0;
+}
+
+.node__chevron--spacer {
+  display: inline-block;
+}
+
+.node__icon {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  flex-shrink: 0;
+}
+
+.node__icon--folder {
+  color: #dcb67a;
+}
+
+.node__name {
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

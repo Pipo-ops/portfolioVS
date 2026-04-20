@@ -1,1 +1,36 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'material-design-icons-iconfont/dist/material-design-icons.css';
+
+/* VS Code Theme - Global Styles */
+:root {
+  --vscode-bg: #1e1e1e;
+  --vscode-titlebar: #3c3c3c;
+  --vscode-titlebar-border: #2d2d2d;
+  --vscode-statusbar: #007acc;
+  --vscode-statusbar-text: #ffffff;
+  --vscode-sidebar: #252526;
+  --vscode-text: #cccccc;
+  --vscode-text-muted: #858585;
+  --vscode-accent: #0098ff;
+  --vscode-hover: #505050;
+
+  --titlebar-height: 30px;
+  --statusbar-height: 22px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: var(--vscode-bg);
+  color: var(--vscode-text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Ubuntu',
+    'Droid Sans', sans-serif;
+  font-size: 13px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

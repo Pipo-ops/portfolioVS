@@ -1,0 +1,56 @@
+:host {
+  display: block;
+}
+
+.statusbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: var(--statusbar-height);
+  background: var(--vscode-statusbar);
+  color: var(--vscode-statusbar-text);
+  font-size: 12px;
+  padding: 0 8px;
+  user-select: none;
+}
+
+.statusbar__group {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 8px;
+  height: var(--statusbar-height);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.item:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.icon {
+  font-size: 14px;
+  width: 14px;
+  height: 14px;
+  line-height: 14px;
+}
+
+.icon--error {
+  color: #f48771;
+}
+
+.icon--warn {
+  color: #ffcc02;
+}
+
+@media (max-width: 600px) {
+  .item:nth-child(n + 3) {
+    display: none;
+  }
+}

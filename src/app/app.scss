@@ -1,0 +1,52 @@
+:host {
+  display: block;
+  height: 100vh;
+}
+
+.app-shell {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
+  background: var(--vscode-bg);
+  color: var(--vscode-text);
+  overflow: hidden;
+}
+
+.workbench {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  min-height: 0;
+}
+
+.editor-area {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-width: 0;
+  min-height: 0;
+  background: var(--vscode-bg);
+}
+
+.editor-content {
+  overflow: auto;
+  min-height: 0;
+  scroll-behavior: smooth;
+}
+
+.placeholder {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 64px 32px;
+  border-top: 1px solid #2d2d2d;
+}
+
+.placeholder h2 {
+  margin: 0 0 12px;
+  font-size: 28px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.placeholder p {
+  margin: 0;
+  color: var(--vscode-text-muted);
+}

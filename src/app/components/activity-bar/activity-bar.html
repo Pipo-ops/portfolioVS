@@ -1,0 +1,25 @@
+<nav class="activity-bar">
+  <ul class="group group--top">
+    @for (item of topItems; track item.id) {
+      <li
+        class="item"
+        [class.item--active]="active() === item.id"
+        [title]="item.label"
+        (click)="select(item.id)"
+      >
+        <mat-icon class="item__icon" [fontIcon]="item.icon"></mat-icon>
+        @if (item.badge) {
+          <span class="item__badge">{{ item.badge }}</span>
+        }
+      </li>
+    }
+  </ul>
+
+  <ul class="group group--bottom">
+    @for (item of bottomItems; track item.id) {
+      <li class="item" [title]="item.label" (click)="select(item.id)">
+        <mat-icon class="item__icon" [fontIcon]="item.icon"></mat-icon>
+      </li>
+    }
+  </ul>
+</nav>

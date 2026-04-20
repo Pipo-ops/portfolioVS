@@ -1,0 +1,90 @@
+<aside class="explorer">
+  <header class="explorer__header">
+    <span class="explorer__title">EXPLORER</span>
+    <mat-icon class="explorer__more" fontIcon="more_horiz"></mat-icon>
+  </header>
+
+  <section class="section">
+    <button
+      type="button"
+      class="section__header"
+      (click)="workspaceOpen.set(!workspaceOpen())"
+    >
+      <mat-icon
+        class="section__chevron"
+        [fontIcon]="workspaceOpen() ? 'expand_more' : 'chevron_right'"
+      ></mat-icon>
+      <span class="section__title">SCHUSTER-PHILLIP</span>
+    </button>
+
+    @if (workspaceOpen()) {
+      <ul class="tree">
+        <ng-container *ngTemplateOutlet="nodes; context: { $implicit: tree(), depth: 1 }"></ng-container>
+      </ul>
+    }
+  </section>
+
+  <section class="section">
+    <button
+      type="button"
+      class="section__header"
+      (click)="outlineOpen.set(!outlineOpen())"
+    >
+      <mat-icon
+        class="section__chevron"
+        [fontIcon]="outlineOpen() ? 'expand_more' : 'chevron_right'"
+      ></mat-icon>
+      <span class="section__title">OUTLINE</span>
+    </button>
+  </section>
+
+  <section class="section">
+    <button
+      type="button"
+      class="section__header"
+      (click)="timelineOpen.set(!timelineOpen())"
+    >
+      <mat-icon
+        class="section__chevron"
+        [fontIcon]="timelineOpen() ? 'expand_more' : 'chevron_right'"
+      ></mat-icon>
+      <span class="section__title">TIMELINE</span>
+    </button>
+  </section>
+</aside>
+
+<ng-template #nodes let-items let-depth="depth">
+  @for (item of items; track item.name) {
+    <li
+      class="node"
+      [class.node--active]="item.active"
+      [style.padding-left.px]="depth * 12"
+      (click)="onNodeClick(item)"
+    >
+      @if (item.type === 'folder') {
+        <mat-icon
+          class="node__chevron"
+          [fontIcon]="item.expanded ? 'expand_more' : 'chevron_right'"
+        ></mat-icon>
+        <mat-icon
+          class="node__icon node__icon--folder"
+          [fontIcon]="item.expanded ? 'folder_open' : 'folder'"
+        ></mat-icon>
+      } @else {
+        <span class="node__chevron node__chevron--spacer"></span>
+        <mat-icon
+          class="node__icon"
+          [style.color]="item.iconColor"
+          [fontIcon]="item.icon || 'insert_drive_file'"
+        ></mat-icon>
+      }
+      <span class="node__name">{{ item.name }}</span>
+    </li>
+
+    @if (item.type === 'folder' && item.expanded && item.children?.length) {
+      <ng-container
+        *ngTemplateOutlet="nodes; context: { $implicit: item.children, depth: depth + 1 }"
+      ></ng-container>
+    }
+  }
+</ng-template>
