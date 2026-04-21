@@ -1,0 +1,42 @@
+<div class="contact">
+  <header class="contact__header">
+    <p class="contact__eyebrow">
+      <span class="contact__comment">//</span> contact.ts
+    </p>
+    <h2 class="contact__title">Lass uns reden</h2>
+    <p class="contact__lead">
+      Auf der Suche nach einem Frontend-Entwickler mit Drive, Neugier und dem Willen zu
+      wachsen? Ich freue mich, wenn wir uns &uuml;ber die n&auml;chste Gelegenheit unterhalten.
+    </p>
+
+    <p class="contact__status">
+      <span class="contact__dot" aria-hidden="true"></span>
+      <span>Verf&uuml;gbar ab sofort &middot; &Ouml;sterreich &middot; remote oder vor Ort</span>
+    </p>
+  </header>
+
+  <a class="contact__primary" [href]="'mailto:' + email">
+    <mat-icon fontIcon="mail"></mat-icon>
+    <span class="contact__primary-text">{{ email }}</span>
+    <mat-icon class="contact__primary-arrow" fontIcon="arrow_forward"></mat-icon>
+  </a>
+
+  <ul class="contact__channels">
+    @for (channel of channels; track channel.label) {
+      <li>
+        <a class="channel" [href]="channel.href" target="_blank" rel="noopener">
+          <mat-icon class="channel__icon" [fontIcon]="channel.icon"></mat-icon>
+          <div class="channel__text">
+            <span class="channel__label">{{ channel.label }}</span>
+            <span class="channel__value">{{ channel.value }}</span>
+          </div>
+          <mat-icon class="channel__arrow" fontIcon="north_east"></mat-icon>
+        </a>
+      </li>
+    }
+  </ul>
+
+  <p class="contact__outro">
+    <span class="contact__comment">//</span> return thanks_for_reading;
+  </p>
+</div>

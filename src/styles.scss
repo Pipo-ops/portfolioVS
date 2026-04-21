@@ -1,5 +1,29 @@
 @import 'material-design-icons-iconfont/dist/material-design-icons.css';
 
+@font-face {
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts/figtree-v9-latin-regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/assets/fonts/figtree-v9-latin-500.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/assets/fonts/figtree-v9-latin-700.woff2') format('woff2');
+}
+
 /* VS Code Theme - Global Styles */
 :root {
   --vscode-bg: #1e1e1e;
@@ -17,6 +41,8 @@
   --commit-green-dark: #1a7f37;
   --commit-green-glow: rgba(46, 160, 67, 0.35);
   --commit-green-glow-strong: rgba(46, 160, 67, 0.5);
+
+  --font-content: 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
 
   --titlebar-height: 30px;
   --statusbar-height: 22px;

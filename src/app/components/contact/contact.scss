@@ -1,0 +1,212 @@
+:host {
+  display: block;
+  color: var(--vscode-text);
+}
+
+.contact {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 96px 32px 120px;
+  text-align: center;
+}
+
+.contact__header {
+  margin-bottom: 40px;
+}
+
+.contact__eyebrow {
+  margin: 0 0 12px;
+  font-family: 'Consolas', 'Menlo', monospace;
+  font-size: 14px;
+  color: var(--vscode-text-muted);
+}
+
+.contact__comment {
+  color: #6a9955;
+}
+
+.contact__title {
+  margin: 0 0 20px;
+  font-size: clamp(36px, 6vw, 56px);
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.contact__lead {
+  margin: 0 0 22px;
+  font-size: 17px;
+  line-height: 1.65;
+  color: #cccccc;
+}
+
+.contact__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(46, 160, 67, 0.1);
+  border: 1px solid rgba(46, 160, 67, 0.35);
+  font-size: 13px;
+  color: #cccccc;
+}
+
+.contact__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--commit-green);
+  box-shadow: 0 0 0 0 var(--commit-green-glow);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 var(--commit-green-glow); }
+  50% { box-shadow: 0 0 0 8px rgba(46, 160, 67, 0); }
+}
+
+.contact__primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 auto 28px;
+  padding: 16px 26px;
+  background: linear-gradient(135deg, var(--commit-green) 0%, var(--commit-green-dark) 100%);
+  color: #ffffff;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  box-shadow: 0 10px 30px var(--commit-green-glow);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+  font-family: 'Consolas', 'Menlo', monospace;
+}
+
+.contact__primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 40px var(--commit-green-glow-strong);
+}
+
+.contact__primary:hover .contact__primary-arrow {
+  transform: translateX(4px);
+}
+
+.contact__primary mat-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+
+.contact__primary-text {
+  font-weight: 500;
+}
+
+.contact__primary-arrow {
+  transition: transform 180ms ease;
+}
+
+.contact__channels {
+  list-style: none;
+  margin: 0 0 48px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.channel {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  background: #252526;
+  border: 1px solid #2d2d2d;
+  border-radius: 10px;
+  color: var(--vscode-text);
+  text-decoration: none;
+  text-align: left;
+  transition: transform 150ms ease, border-color 150ms ease, background 150ms ease;
+}
+
+.channel:hover {
+  transform: translateY(-2px);
+  border-color: var(--commit-green);
+  background: #2d2d2d;
+}
+
+.channel:hover .channel__arrow {
+  transform: translate(3px, -3px);
+  color: var(--commit-green);
+}
+
+.channel__icon {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  font-size: 22px;
+  line-height: 38px;
+  text-align: center;
+  border-radius: 8px;
+  background: rgba(46, 160, 67, 0.15);
+  color: var(--commit-green);
+}
+
+.channel__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.channel__label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.channel__value {
+  font-size: 12px;
+  color: var(--vscode-text-muted);
+  font-family: 'Consolas', 'Menlo', monospace;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.channel__arrow {
+  flex-shrink: 0;
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  color: var(--vscode-text-muted);
+  transition: transform 150ms ease, color 150ms ease;
+}
+
+.contact__outro {
+  margin: 0;
+  font-family: 'Consolas', 'Menlo', monospace;
+  font-size: 13px;
+  color: var(--vscode-text-muted);
+}
+
+@media (max-width: 560px) {
+  .contact__channels {
+    grid-template-columns: 1fr;
+  }
+  .contact__primary {
+    font-size: 14px;
+    padding: 14px 20px;
+    gap: 10px;
+  }
+  .contact__primary-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
