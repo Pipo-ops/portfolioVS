@@ -23,11 +23,19 @@
       </p>
 
       <div class="hero__ctas">
-        <a class="btn btn--primary" [href]="primaryCta.href">
+        <a
+          class="btn btn--primary"
+          [href]="'#' + primaryCta.targetId"
+          (click)="scrollTo($event, primaryCta.targetId)"
+        >
           <span>{{ primaryCta.label }}</span>
           <mat-icon class="btn__icon" [fontIcon]="primaryCta.icon"></mat-icon>
         </a>
-        <a class="btn btn--ghost" [href]="secondaryCta.href">
+        <a
+          class="btn btn--ghost"
+          [href]="'#' + secondaryCta.targetId"
+          (click)="scrollTo($event, secondaryCta.targetId)"
+        >
           <mat-icon class="btn__icon" [fontIcon]="secondaryCta.icon"></mat-icon>
           <span>{{ secondaryCta.label }}</span>
         </a>
@@ -56,7 +64,7 @@
     </div>
   </div>
 
-  <a class="hero__scroll" href="#about" aria-label="Scroll">
+  <a class="hero__scroll" href="#about" aria-label="Scroll" (click)="scrollTo($event, 'about')">
     <mat-icon fontIcon="keyboard_arrow_down"></mat-icon>
   </a>
 </section>

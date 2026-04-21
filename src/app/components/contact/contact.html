@@ -6,7 +6,7 @@
     <h2 class="contact__title">Lass uns reden</h2>
     <p class="contact__lead">
       Auf der Suche nach einem Frontend-Entwickler mit Drive, Neugier und dem Willen zu
-      wachsen? Ich freue mich, wenn wir uns &uuml;ber die n&auml;chste Gelegenheit unterhalten.
+      wachsen? Schreib mir &mdash; je mehr Kontext, desto besser kann ich antworten.
     </p>
 
     <p class="contact__status">
@@ -15,11 +15,108 @@
     </p>
   </header>
 
-  <a class="contact__primary" [href]="'mailto:' + email">
-    <mat-icon fontIcon="mail"></mat-icon>
-    <span class="contact__primary-text">{{ email }}</span>
-    <mat-icon class="contact__primary-arrow" fontIcon="arrow_forward"></mat-icon>
-  </a>
+  @if (submitted()) {
+    <div class="success" role="status">
+      <mat-icon class="success__icon" fontIcon="check_circle"></mat-icon>
+      <div>
+        <h3 class="success__title">Dein Mail-Programm sollte sich gerade &ouml;ffnen.</h3>
+        <p class="success__text">
+          Falls nicht, schreib mir direkt an
+          <a [href]="'mailto:' + email">{{ email }}</a>.
+        </p>
+        <button type="button" class="success__reset" (click)="resetForm()">
+          Neue Nachricht schreiben
+        </button>
+      </div>
+    </div>
+  } @else {
+    <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+      <div class="form__row">
+        <div class="field">
+          <label for="c-name">
+            Name <span class="field__req" aria-hidden="true">*</span>
+          </label>
+          <input id="c-name" type="text" formControlName="name" autocomplete="name" />
+          @if (hasError('name', 'required')) {
+            <span class="field__error">Name fehlt noch.</span>
+          } @else if (hasError('name', 'minlength')) {
+            <span class="field__error">Mindestens 2 Zeichen.</span>
+          }
+        </div>
+
+        <div class="field">
+          <label for="c-email">
+            E-Mail <span class="field__req" aria-hidden="true">*</span>
+          </label>
+          <input id="c-email" type="email" formControlName="email" autocomplete="email" />
+          @if (hasError('email', 'required')) {
+            <span class="field__error">E-Mail fehlt noch.</span>
+          } @else if (hasError('email', 'email')) {
+            <span class="field__error">Bitte eine g&uuml;ltige E-Mail.</span>
+          }
+        </div>
+      </div>
+
+      <div class="form__row">
+        <div class="field">
+          <label for="c-company">Firma / Rolle</label>
+          <input
+            id="c-company"
+            type="text"
+            formControlName="company"
+            placeholder="z.&#8239;B. HR bei Firma XY"
+          />
+        </div>
+
+        <div class="field">
+          <label for="c-subject">Betreff</label>
+          <input
+            id="c-subject"
+            type="text"
+            formControlName="subject"
+            placeholder="Worum geht&rsquo;s?"
+          />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="c-message">
+          Nachricht <span class="field__req" aria-hidden="true">*</span>
+        </label>
+        <textarea
+          id="c-message"
+          formControlName="message"
+          rows="5"
+          placeholder="Erz&auml;hlen Sie mir kurz, was Sie brauchen &hellip;"
+        ></textarea>
+        @if (hasError('message', 'required')) {
+          <span class="field__error">Nachricht fehlt noch.</span>
+        } @else if (hasError('message', 'minlength')) {
+          <span class="field__error">Ein paar Zeilen mehr bitte.</span>
+        }
+      </div>
+
+      <div class="field field--check">
+        <label class="check">
+          <input type="checkbox" formControlName="consent" />
+          <span class="check__box" aria-hidden="true"></span>
+          <span>Ich habe die Datenschutzerkl&auml;rung gelesen und stimme zu.</span>
+        </label>
+        <a class="check__link" href="#" (click)="$event.preventDefault()">
+          <mat-icon class="check__link-icon" fontIcon="open_in_new"></mat-icon>
+          Datenschutzerkl&auml;rung ansehen
+        </a>
+        @if (hasError('consent', 'required')) {
+          <span class="field__error">Bitte stimme der Datenschutzerkl&auml;rung zu.</span>
+        }
+      </div>
+
+      <button type="submit" class="form__submit" [disabled]="form.invalid">
+        <mat-icon fontIcon="send"></mat-icon>
+        <span>Nachricht senden</span>
+      </button>
+    </form>
+  }
 
   <ul class="contact__channels">
     @for (channel of channels; track channel.label) {
