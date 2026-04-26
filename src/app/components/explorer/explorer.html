@@ -57,7 +57,7 @@
   @for (item of items; track item.name) {
     <li
       class="node"
-      [class.node--active]="item.active"
+      [class.node--active]="item.targetId && item.targetId === activeId()"
       [style.padding-left.px]="depth * 12"
       (click)="onNodeClick(item)"
     >
