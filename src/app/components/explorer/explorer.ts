@@ -41,8 +41,10 @@ export class Explorer {
           type: 'folder',
           expanded: true,
           children: [
+            { name: 'petru.ts', type: 'file', icon: 'code', iconColor: '#519aba', targetId: 'project-petru' },
             { name: 'join.ts', type: 'file', icon: 'code', iconColor: '#519aba', targetId: 'project-join' },
             { name: 'el-pollo-loco.ts', type: 'file', icon: 'code', iconColor: '#519aba', targetId: 'project-pollo' },
+            { name: 'mietbar.ts', type: 'file', icon: 'code', iconColor: '#519aba', targetId: 'project-mietbar' },
           ],
         },
         { name: 'contact.ts', type: 'file', icon: 'code', iconColor: '#519aba', targetId: 'contact' },

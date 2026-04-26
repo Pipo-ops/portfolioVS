@@ -25,16 +25,32 @@
             <span class="project__frame-file">{{ project.file }}</span>
           </div>
           <div class="project__shot-area">
-            <img
-              class="project__img"
-              [src]="project.image"
-              [alt]="project.name"
-              loading="lazy"
-              (error)="onImageError($event)"
-            />
             <div class="project__shot-fallback">
               <span class="project__shot-label">{{ project.name }}</span>
             </div>
+            @for (img of project.images; track img; let j = $index) {
+              <img
+                class="project__img"
+                [class.project__img--active]="j === currentIndex(project)"
+                [src]="img"
+                [alt]="project.name + ' Screenshot ' + (j + 1)"
+                loading="lazy"
+                (error)="onImageError($event)"
+              />
+            }
+            @if (project.images.length > 1) {
+              <div class="project__dots" role="tablist" [attr.aria-label]="'Bilder ' + project.name">
+                @for (img of project.images; track img; let j = $index) {
+                  <button
+                    type="button"
+                    class="project__dot-btn"
+                    [class.project__dot-btn--active]="j === currentIndex(project)"
+                    [attr.aria-label]="'Bild ' + (j + 1)"
+                    (click)="setActive(project, j)"
+                  ></button>
+                }
+              </div>
+            }
           </div>
         </div>
       </div>
@@ -57,12 +73,11 @@
               <mat-icon fontIcon="open_in_new"></mat-icon>
               <span>Live ansehen</span>
             </a>
-          }
-          @if (project.repoUrl) {
-            <a class="btn btn--ghost" [href]="project.repoUrl" target="_blank" rel="noopener">
-              <mat-icon fontIcon="code"></mat-icon>
-              <span>Code</span>
-            </a>
+          } @else {
+            <span class="project__nda" title="Internes Projekt &ndash; nicht &ouml;ffentlich verf&uuml;gbar">
+              <mat-icon fontIcon="lock"></mat-icon>
+              <span>Kundenprojekt &mdash; auf Anfrage</span>
+            </span>
           }
         </div>
       </div>
