@@ -45,11 +45,12 @@ export class Explorer {
             { name: 'el-pollo-loco.ts', type: 'file', icon: 'code', iconColor: '#519aba', targetId: 'project-pollo' },
           ],
         },
+        { name: 'contact.ts', type: 'file', icon: 'code', iconColor: '#519aba', targetId: 'contact' },
       ],
     },
     { name: 'README.md', type: 'file', icon: 'description', iconColor: '#519aba', targetId: 'readme' },
-    { name: 'LEGAL.md', type: 'file', icon: 'description', iconColor: '#858585', targetId: 'legal' },
-    { name: 'IMPRINT.md', type: 'file', icon: 'description', iconColor: '#858585', targetId: 'imprint' },
+    { name: 'LEGAL.md', type: 'file', icon: 'description', iconColor: '#858585' },
+    { name: 'IMPRINT.md', type: 'file', icon: 'description', iconColor: '#858585' },
   ]);
 
   protected onNodeClick(node: FileNode): void {
