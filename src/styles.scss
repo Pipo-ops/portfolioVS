@@ -32,8 +32,8 @@
   --vscode-statusbar: #007acc;
   --vscode-statusbar-text: #ffffff;
   --vscode-sidebar: #252526;
-  --vscode-text: #cccccc;
-  --vscode-text-muted: #858585;
+  --vscode-text: #d4d4d4;
+  --vscode-text-muted: #a8a8a8;
   --vscode-accent: #0098ff;
   --vscode-hover: #505050;
 
@@ -50,6 +50,49 @@
 
 * {
   box-sizing: border-box;
+}
+
+/* Accessible focus ring for keyboard nav (hidden for mouse) */
+:focus-visible {
+  outline: 2px solid var(--commit-green);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* Skip-to-content link – appears on keyboard focus */
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  padding: 10px 16px;
+  background: var(--commit-green);
+  color: #ffffff;
+  font: 600 13px/1 var(--font-content, sans-serif);
+  text-decoration: none;
+  border-radius: 6px;
+  transform: translateY(-200%);
+  transition: transform 180ms ease;
+  z-index: 2000;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+/* Screen reader only utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* VS Code-style scrollbars */

@@ -1,24 +1,39 @@
-<nav class="activity-bar">
+<nav class="activity-bar" aria-label="Werkzeugleiste">
   <ul class="group group--top">
     @for (item of topItems; track item.id) {
-      <li
-        class="item"
-        [class.item--active]="active() === item.id"
-        [title]="item.label"
-        (click)="select(item.id)"
-      >
-        <mat-icon class="item__icon" [fontIcon]="item.icon"></mat-icon>
-        @if (item.badge) {
-          <span class="item__badge">{{ item.badge }}</span>
-        }
+      <li>
+        <button
+          type="button"
+          class="item"
+          [class.item--active]="active() === item.id"
+          [attr.aria-label]="item.label"
+          [attr.aria-current]="active() === item.id ? 'true' : null"
+          [title]="item.label"
+          (click)="select(item.id)"
+        >
+          <mat-icon class="item__icon" [fontIcon]="item.icon" aria-hidden="true"></mat-icon>
+          @if (item.badge) {
+            <span class="item__badge" [attr.aria-label]="item.badge + ' Benachrichtigungen'">
+              {{ item.badge }}
+            </span>
+          }
+        </button>
       </li>
     }
   </ul>
 
   <ul class="group group--bottom">
     @for (item of bottomItems; track item.id) {
-      <li class="item" [title]="item.label" (click)="select(item.id)">
-        <mat-icon class="item__icon" [fontIcon]="item.icon"></mat-icon>
+      <li>
+        <button
+          type="button"
+          class="item"
+          [attr.aria-label]="item.label"
+          [title]="item.label"
+          (click)="select(item.id)"
+        >
+          <mat-icon class="item__icon" [fontIcon]="item.icon" aria-hidden="true"></mat-icon>
+        </button>
       </li>
     }
   </ul>

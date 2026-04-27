@@ -45,7 +45,8 @@
   align-items: center;
   gap: 2px;
   width: 100%;
-  padding: 4px 8px;
+  min-height: 26px;
+  padding: 6px 8px;
   background: transparent;
   border: none;
   color: var(--vscode-text);
@@ -79,13 +80,28 @@
   overflow-y: auto;
 }
 
+.tree--nested {
+  padding: 0;
+}
+
+.node-item {
+  list-style: none;
+}
+
 .node {
+  appearance: none;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  width: 100%;
+  text-align: left;
   display: flex;
   align-items: center;
   gap: 4px;
-  height: 22px;
+  min-height: 26px;
   padding-right: 8px;
   color: var(--vscode-text);
+  font-size: 13px;
   cursor: pointer;
   user-select: none;
   white-space: nowrap;

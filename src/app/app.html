@@ -1,3 +1,5 @@
+<a class="skip-link" href="#main-content">Zum Hauptinhalt springen</a>
+
 <div class="app-shell">
   <app-header></app-header>
 
@@ -5,31 +7,39 @@
     <app-activity-bar></app-activity-bar>
     <app-explorer></app-explorer>
 
-    <section class="editor-area">
+    <div class="editor-area">
       <app-tab-bar></app-tab-bar>
-      <div class="editor-content" #scrollRoot>
-        <section id="readme">
+      <main
+        class="editor-content"
+        id="main-content"
+        tabindex="-1"
+        #scrollRoot
+        aria-label="Portfolio-Inhalt"
+      >
+        <section id="readme" aria-labelledby="readme-title">
           <app-hero></app-hero>
         </section>
 
-        <section id="about">
+        <section id="about" aria-labelledby="about-title">
           <app-about></app-about>
         </section>
 
-        <section id="skills">
+        <section id="skills" aria-labelledby="skills-title">
           <app-skills></app-skills>
         </section>
 
-        <section id="projects">
+        <section id="projects" aria-labelledby="projects-title">
           <app-projects></app-projects>
         </section>
 
-        <section id="contact">
+        <section id="contact" aria-labelledby="contact-title">
           <app-contact></app-contact>
         </section>
-      </div>
-    </section>
+      </main>
+    </div>
   </div>
 
   <app-footer></app-footer>
 </div>
+
+<app-legal-modal></app-legal-modal>

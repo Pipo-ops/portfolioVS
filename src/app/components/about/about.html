@@ -3,25 +3,14 @@
     <p class="about__eyebrow">
       <span class="about__comment">//</span> about.ts
     </p>
-    <h2 class="about__title">&Uuml;ber mich</h2>
+    <h2 class="about__title" id="about-title">{{ t().title }}</h2>
   </header>
 
   <div class="about__grid">
     <div class="about__text">
-      <p>
-        Ich bin Phillip, Frontend-Entwickler aus &Ouml;sterreich. Als Quereinsteiger habe ich
-        mir das Programmieren aus Leidenschaft angeeignet &mdash; heute, mit rund drei Jahren
-        Erfahrung, baue ich Oberfl&auml;chen, die sich gut anf&uuml;hlen und zuverl&auml;ssig
-        funktionieren.
-      </p>
-      <p>
-        Kreativit&auml;t, Neugier und Disziplin sind mein Antrieb. Ich lerne schnell, arbeite
-        strukturiert und nehme jedes Code-Review als Chance, besser zu werden.
-      </p>
-      <p>
-        Jetzt suche ich ein Team, in dem ich mit echten Produkten Verantwortung &uuml;bernehmen
-        kann &mdash; und weiter wachse, Tag f&uuml;r Tag.
-      </p>
+      <p>{{ t().p1 }}</p>
+      <p>{{ t().p2 }}</p>
+      <p>{{ t().p3 }}</p>
     </div>
 
     <aside class="about__card">
@@ -52,7 +41,7 @@
   </div>
 
   <ul class="about__values">
-    @for (value of values; track value.title) {
+    @for (value of t().values; track value.title) {
       <li class="value">
         <mat-icon class="value__icon" [fontIcon]="value.icon"></mat-icon>
         <div>

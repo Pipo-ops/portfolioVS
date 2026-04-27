@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
+import { I18nService } from '../../shared/services/i18n';
 
 interface Skill {
   name: string;
@@ -12,6 +13,10 @@ interface Skill {
   styleUrl: './skills.scss',
 })
 export class Skills {
+  private readonly i18n = inject(I18nService);
+
+  protected readonly t = computed(() => this.i18n.t().skills);
+
   protected readonly photo = 'assets/img/profil-img/profil-img-two.jpg';
 
   protected readonly skills: Skill[] = [

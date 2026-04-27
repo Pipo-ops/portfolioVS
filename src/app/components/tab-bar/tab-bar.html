@@ -1,37 +1,49 @@
-<div class="tab-bar">
-  <ul class="tabs" role="tablist">
+<nav class="tab-bar" aria-label="Ge&ouml;ffnete Dateien">
+  <ul class="tabs">
     @for (tab of tabs(); track tab.id) {
-      <li
-        class="tab"
-        [class.tab--active]="activeId() === tab.id"
-        role="tab"
-        [attr.aria-selected]="activeId() === tab.id"
-        (click)="select(tab.id)"
-      >
-        <mat-icon
-          class="tab__icon"
-          [style.color]="tab.iconColor"
-          [fontIcon]="tab.icon"
-        ></mat-icon>
-        <span class="tab__name">{{ tab.name }}</span>
+      <li>
         <button
           type="button"
-          class="tab__close"
-          [attr.aria-label]="'Close ' + tab.name"
-          (click)="close($event, tab.id)"
+          class="tab"
+          [class.tab--active]="activeId() === tab.id"
+          [attr.aria-current]="activeId() === tab.id ? 'page' : null"
+          (click)="select(tab.id)"
         >
-          <mat-icon fontIcon="close"></mat-icon>
+          <mat-icon
+            class="tab__icon"
+            [style.color]="tab.iconColor"
+            [fontIcon]="tab.icon"
+            aria-hidden="true"
+          ></mat-icon>
+          <span class="tab__name">{{ tab.name }}</span>
+          <span
+            class="tab__close"
+            role="button"
+            tabindex="0"
+            [attr.aria-label]="'Schlie&szlig;en: ' + tab.name"
+            (click)="close($event, tab.id)"
+            (keydown.enter)="close($event, tab.id)"
+            (keydown.space)="$event.preventDefault(); close($event, tab.id)"
+          >
+            <mat-icon fontIcon="close" aria-hidden="true"></mat-icon>
+          </span>
         </button>
       </li>
     }
   </ul>
-</div>
+</nav>
 
-<nav class="breadcrumbs" aria-label="breadcrumb">
-  @for (crumb of breadcrumbs(); track $index; let last = $last) {
-    <span class="breadcrumbs__crumb">{{ crumb }}</span>
-    @if (!last) {
-      <mat-icon class="breadcrumbs__sep" fontIcon="chevron_right"></mat-icon>
+<nav class="breadcrumbs" aria-label="Pfad-Navigation">
+  <ol class="breadcrumbs__list">
+    @for (crumb of breadcrumbs(); track $index; let last = $last) {
+      <li class="breadcrumbs__crumb" [attr.aria-current]="last ? 'location' : null">
+        {{ crumb }}
+      </li>
+      @if (!last) {
+        <li class="breadcrumbs__sep-wrap" aria-hidden="true">
+          <mat-icon class="breadcrumbs__sep" fontIcon="chevron_right"></mat-icon>
+        </li>
+      }
     }
-  }
+  </ol>
 </nav>

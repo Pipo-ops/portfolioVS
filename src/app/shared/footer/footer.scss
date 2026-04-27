@@ -34,6 +34,14 @@
   background: rgba(255, 255, 255, 0.15);
 }
 
+.item--toggle {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+}
+
 .icon {
   font-size: 14px;
   width: 14px;

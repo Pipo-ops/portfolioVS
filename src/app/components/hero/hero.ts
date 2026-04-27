@@ -1,5 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { I18nService } from '../../shared/services/i18n';
 import { NavigationService } from '../../shared/services/navigation';
 
 @Component({
@@ -10,15 +11,13 @@ import { NavigationService } from '../../shared/services/navigation';
 })
 export class Hero {
   private readonly nav = inject(NavigationService);
+  private readonly i18n = inject(I18nService);
+
+  protected readonly t = computed(() => this.i18n.t().hero);
 
   protected readonly name = 'Phillip Schuster';
-  protected readonly role = 'Frontend-Entwickler';
-  protected readonly location = 'Österreich';
   protected readonly photo = 'assets/img/profil-img/profil-img.jpg';
   protected readonly fallback = 'assets/img/profil-img/profil-img.jpg';
-
-  protected readonly primaryCta = { label: 'Jetzt kontaktieren', icon: 'arrow_forward', targetId: 'contact' };
-  protected readonly secondaryCta = { label: 'Projekte ansehen', icon: 'folder_open', targetId: 'projects' };
 
   protected readonly socials = [
     { label: 'GitHub', icon: 'code', href: 'https://github.com/Pipo-ops' },

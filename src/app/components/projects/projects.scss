@@ -149,23 +149,35 @@
 
 .project__dot-btn {
   appearance: none;
-  width: 8px;
-  height: 8px;
+  width: 24px;
+  height: 24px;
   padding: 0;
   border: none;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+}
+
+.project__dot-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.4);
-  cursor: pointer;
+  transform: translate(-50%, -50%);
   transition: background 180ms ease, transform 180ms ease;
 }
 
-.project__dot-btn:hover {
+.project__dot-btn:hover::before {
   background: rgba(255, 255, 255, 0.7);
 }
 
-.project__dot-btn--active {
+.project__dot-btn--active::before {
   background: #ffffff;
-  transform: scale(1.2);
+  transform: translate(-50%, -50%) scale(1.2);
 }
 
 .project__shot-label {

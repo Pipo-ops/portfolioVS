@@ -1,6 +1,10 @@
-import { Component, inject, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, computed, DestroyRef, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { I18nService } from '../../shared/services/i18n';
+import { LegalService } from '../../shared/services/legal';
 
 interface Channel {
   icon: string;
@@ -8,6 +12,10 @@ interface Channel {
   value: string;
   href: string;
 }
+
+type FormState = 'idle' | 'sending' | 'success' | 'error';
+
+const ENDPOINT = '/api/mail.php';
 
 @Component({
   selector: 'app-contact',
@@ -17,6 +25,12 @@ interface Channel {
 })
 export class Contact {
   private readonly fb = inject(FormBuilder);
+  private readonly legal = inject(LegalService);
+  private readonly i18n = inject(I18nService);
+  private readonly http = inject(HttpClient);
+  private readonly destroyRef = inject(DestroyRef);
+
+  protected readonly t = computed(() => this.i18n.t().contact);
 
   protected readonly email = 'office@schuster-phillip.at';
 
@@ -32,49 +46,52 @@ export class Contact {
     subject: [''],
     message: ['', [Validators.required, Validators.minLength(10)]],
     consent: [false, Validators.requiredTrue],
+    website: [''], // honeypot
   });
 
-  protected readonly submitted = signal(false);
+  protected readonly state = signal<FormState>('idle');
 
   protected onSubmit(): void {
-    if (this.form.invalid) {
+    if (this.form.invalid || this.state() === 'sending') {
       this.form.markAllAsTouched();
       return;
     }
 
-    const { name, email, company, subject, message } = this.form.getRawValue();
+    this.state.set('sending');
 
-    const lines = [
-      `Von: ${name} <${email}>`,
-      company ? `Firma / Rolle: ${company}` : null,
-      '',
-      message,
-    ].filter(Boolean);
+    const payload = this.form.getRawValue();
 
-    const mailtoSubject = subject?.trim() || `Portfolio-Kontakt von ${name}`;
-    const body = lines.join('\r\n');
-    const mailto =
-      `mailto:${this.email}` +
-      `?subject=${encodeURIComponent(mailtoSubject)}` +
-      `&body=${encodeURIComponent(body)}`;
-
-    const link = document.createElement('a');
-    link.href = mailto;
-    link.rel = 'noopener';
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-
-    this.submitted.set(true);
+    this.http
+      .post<{ ok: boolean; error?: string }>(ENDPOINT, payload)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (res) => {
+          if (res?.ok) {
+            this.state.set('success');
+            this.form.reset();
+          } else {
+            this.state.set('error');
+          }
+        },
+        error: () => {
+          this.state.set('error');
+        },
+      });
   }
 
   protected resetForm(): void {
     this.form.reset();
-    this.submitted.set(false);
+    this.state.set('idle');
   }
 
   protected hasError(field: string, error: string): boolean {
     const control = this.form.get(field);
     return !!control && control.touched && control.hasError(error);
+  }
+
+  protected openDatenschutz(event: Event): void {
+    event.preventDefault();
+    event.stopPropagation();
+    this.legal.open('datenschutz');
   }
 }

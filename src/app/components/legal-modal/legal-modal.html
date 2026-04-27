@@ -1,0 +1,197 @@
+@if (current()) {
+  <div
+    class="backdrop"
+    role="dialog"
+    aria-modal="true"
+    [attr.aria-label]="current() === 'impressum' ? 'Impressum' : 'Datenschutzerkl\u00e4rung'"
+    (click)="onBackdrop($event)"
+  >
+    <article class="modal">
+      <header class="modal__head">
+        <div class="modal__head-left">
+          <span class="modal__dot modal__dot--r"></span>
+          <span class="modal__dot modal__dot--y"></span>
+          <span class="modal__dot modal__dot--g"></span>
+          <span class="modal__file">
+            {{ current() === 'impressum' ? 'IMPRINT.md' : 'LEGAL.md' }}
+          </span>
+        </div>
+        <button type="button" class="modal__close" (click)="close()" aria-label="Schlie\u00dfen">
+          <mat-icon fontIcon="close"></mat-icon>
+        </button>
+      </header>
+
+      <div class="modal__body">
+        @if (current() === 'impressum') {
+          <h2 class="doc__title">Impressum</h2>
+          <p class="doc__sub">
+            Informationen und Offenlegung gem&auml;&szlig; &sect;5 (1) ECG, &sect; 25 MedienG,
+            &sect; 63 GewO und &sect; 14 UGB
+          </p>
+
+          <dl class="doc__meta">
+            <dt>Webseitenbetreiber</dt>
+            <dd>Schuster Phillip</dd>
+            <dt>Anschrift</dt>
+            <dd>Pragerstrasse 43&ndash;47/10/9, 1210 Wien</dd>
+            <dt>Telefon</dt>
+            <dd><a href="tel:+436604666871">+43 660 4666871</a></dd>
+            <dt>E-Mail</dt>
+            <dd>
+              <a href="mailto:office@schuster-phillip.at">office@schuster-phillip.at</a>
+            </dd>
+            <dt>Anwendbare Rechtsvorschrift</dt>
+            <dd>
+              <a href="https://www.ris.bka.gv.at" target="_blank" rel="noopener">
+                www.ris.bka.gv.at
+              </a>
+            </dd>
+          </dl>
+
+          <h3>Online-Streitbeilegung</h3>
+          <p>
+            Verbraucher, welche in &Ouml;sterreich oder in einem sonstigen Vertragsstaat der
+            ODR-VO niedergelassen sind, haben die M&ouml;glichkeit Probleme bez&uuml;glich dem
+            entgeltlichen Kauf von Waren oder Dienstleistungen im Rahmen einer
+            Online-Streitbeilegung (nach OS, AStG) zu l&ouml;sen. Die Europ&auml;ische
+            Kommission stellt eine Plattform hierf&uuml;r bereit:
+            <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">
+              ec.europa.eu/consumers/odr
+            </a>.
+          </p>
+
+          <h3>Urheberrecht</h3>
+          <p>
+            Die Inhalte dieser Webseite unterliegen, soweit dies rechtlich m&ouml;glich ist,
+            diversen Schutzrechten (z.&nbsp;B. dem Urheberrecht). Jegliche
+            Verwendung/Verbreitung von bereitgestelltem Material, welche urheberrechtlich
+            untersagt ist, bedarf schriftlicher Zustimmung des Webseitenbetreibers.
+          </p>
+
+          <h3>Haftungsausschluss</h3>
+          <p>
+            Trotz sorgf&auml;ltiger inhaltlicher Kontrolle &uuml;bernimmt der
+            Webseitenbetreiber dieser Webseite keine Haftung f&uuml;r die Inhalte externer
+            Links. F&uuml;r den Inhalt der verlinkten Seiten sind ausschlie&szlig;lich deren
+            Betreiber verantwortlich.
+          </p>
+
+          <p class="doc__source">Quelle: Impressum Generator &Ouml;sterreich</p>
+        } @else if (current() === 'datenschutz') {
+          <h2 class="doc__title">Datenschutzerkl&auml;rung</h2>
+
+          <p>
+            In folgender Datenschutzerkl&auml;rung informieren wir Sie &uuml;ber die
+            wichtigsten Aspekte der Datenverarbeitung im Rahmen unserer Webseite. Wir erheben
+            und verarbeiten personenbezogene Daten nur auf Grundlage der gesetzlichen
+            Bestimmungen (Datenschutzgrundverordnung, Telekommunikationsgesetz 2003).
+          </p>
+
+          <p>
+            Sobald Sie als Benutzer auf unsere Webseite zugreifen oder diese besuchen, wird
+            Ihre IP-Adresse, Beginn sowie Beginn und Ende der Sitzung erfasst. Dies ist
+            technisch bedingt und stellt somit ein berechtigtes Interesse iSv Art 6 Abs 1 lit
+            f DSGVO dar.
+          </p>
+
+          <h3>Kontakt mit uns</h3>
+          <p>
+            Wenn Sie uns, entweder &uuml;ber unser Kontaktformular auf unserer Webseite oder
+            per E-Mail kontaktieren, dann werden die von Ihnen an uns &uuml;bermittelten
+            Daten zwecks Bearbeitung Ihrer Anfrage oder f&uuml;r den Fall von weiteren
+            Anschlussfragen f&uuml;r sechs Monate bei uns gespeichert. Es erfolgt, ohne Ihre
+            Einwilligung, keine Weitergabe Ihrer &uuml;bermittelten Daten.
+          </p>
+
+          <h3>Cookies</h3>
+          <p>
+            Unsere Website verwendet Cookies. Dabei handelt es sich um kleine Textdateien,
+            die mit Hilfe des Browsers auf Ihrem Endger&auml;t abgelegt werden. Sie richten
+            keinen Schaden an. Einige Cookies bleiben auf Ihrem Endger&auml;t gespeichert,
+            bis Sie diese l&ouml;schen. Wenn Sie dies nicht w&uuml;nschen, k&ouml;nnen Sie
+            Ihren Browser so einrichten, dass er Sie &uuml;ber das Setzen von Cookies
+            informiert und Sie dies nur im Einzelfall erlauben.
+          </p>
+
+          <h3>Google Fonts</h3>
+          <p>Unsere Website verwendet Schriftarten von &bdquo;Google Fonts&ldquo;. Der Dienstanbieter dieser Funktion ist:</p>
+          <p>
+            Google Ireland Limited<br />
+            Gordon House, Barrow Street<br />
+            Dublin 4, Ireland<br />
+            Tel: +353 1 543 1000
+          </p>
+          <p>
+            Beim Aufrufen dieser Webseite l&auml;dt Ihr Browser Schriftarten und speichert
+            diese im Cache. Google kann Cookies setzen oder analysieren.
+          </p>
+          <p>
+            Die Nutzung von Google Fonts dient der Optimierung unserer Dienstleistung und
+            der einheitlichen Darstellung von Inhalten. Dies stellt ein berechtigtes
+            Interesse im Sinne von Art. 6 Abs. 1 lit. f DSGVO dar.
+          </p>
+          <p>
+            Weitere Informationen:
+            <a href="https://developers.google.com/fonts/faq" target="_blank" rel="noopener">
+              developers.google.com/fonts/faq
+            </a>
+            &middot;
+            <a href="https://policies.google.com/privacy?hl=de" target="_blank" rel="noopener">
+              policies.google.com/privacy
+            </a>
+          </p>
+
+          <h3>Server-Log Files</h3>
+          <p>
+            Diese Webseite und der damit verbundene Provider erheben im Zuge der Nutzung
+            automatisch Informationen im Rahmen sogenannter &bdquo;Server-Log Files&ldquo;:
+          </p>
+          <ul>
+            <li>IP-Adresse oder Hostname</li>
+            <li>Verwendeter Browser</li>
+            <li>Aufenthaltsdauer, Datum und Uhrzeit</li>
+            <li>Aufgerufene Seiten</li>
+            <li>Spracheinstellungen und Betriebssystem</li>
+            <li>Leaving-Page</li>
+            <li>ISP (Internet Service Provider)</li>
+          </ul>
+          <p>
+            Diese Informationen werden nicht personenbezogen verarbeitet oder mit
+            personenbezogenen Daten in Verbindung gebracht. Der Webseitenbetreiber
+            beh&auml;lt sich vor, bei Bekanntwerden rechtswidriger T&auml;tigkeiten diese
+            Daten auszuwerten.
+          </p>
+
+          <h3>Ihre Rechte als Betroffener</h3>
+          <p>Sie haben das Recht auf:</p>
+          <ul>
+            <li>Auskunft</li>
+            <li>L&ouml;schung</li>
+            <li>Berichtigung</li>
+            <li>&Uuml;bertragbarkeit</li>
+            <li>Widerruf</li>
+            <li>Einschr&auml;nkung</li>
+          </ul>
+          <p>
+            Wenn Sie vermuten, dass Ihre Daten nicht rechtskonform verarbeitet werden,
+            k&ouml;nnen Sie sich bei uns oder bei der Datenschutzbeh&ouml;rde beschweren.
+          </p>
+
+          <h3>Kontakt</h3>
+          <dl class="doc__meta">
+            <dt>Webseitenbetreiber</dt>
+            <dd>Schuster Phillip</dd>
+            <dt>Telefon</dt>
+            <dd><a href="tel:+436604666871">+43 660 4666871</a></dd>
+            <dt>E-Mail</dt>
+            <dd>
+              <a href="mailto:office@schuster-phillip.at">office@schuster-phillip.at</a>
+            </dd>
+          </dl>
+
+          <p class="doc__source">Quelle: Datenschutzgenerator &Ouml;sterreich DSGVO</p>
+        }
+      </div>
+    </article>
+  </div>
+}

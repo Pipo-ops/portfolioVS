@@ -4,6 +4,7 @@ import { ActivityBar } from './components/activity-bar/activity-bar';
 import { Contact } from './components/contact/contact';
 import { Explorer } from './components/explorer/explorer';
 import { Hero } from './components/hero/hero';
+import { LegalModal } from './components/legal-modal/legal-modal';
 import { Projects } from './components/projects/projects';
 import { Skills } from './components/skills/skills';
 import { TabBar } from './components/tab-bar/tab-bar';
@@ -13,7 +14,7 @@ import { NavigationService } from './shared/services/navigation';
 
 @Component({
   selector: 'app-root',
-  imports: [Header, Footer, ActivityBar, Explorer, TabBar, Hero, About, Skills, Projects, Contact],
+  imports: [Header, Footer, ActivityBar, Explorer, TabBar, Hero, About, Skills, Projects, Contact, LegalModal],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })

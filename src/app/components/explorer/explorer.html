@@ -1,20 +1,22 @@
-<aside class="explorer">
+<nav class="explorer" aria-label="Datei-Explorer">
   <header class="explorer__header">
-    <span class="explorer__title">EXPLORER</span>
-    <mat-icon class="explorer__more" fontIcon="more_horiz"></mat-icon>
+    <h2 class="explorer__title">EXPLORER</h2>
+    <mat-icon class="explorer__more" fontIcon="more_horiz" aria-hidden="true"></mat-icon>
   </header>
 
-  <section class="section">
+  <section class="section" aria-labelledby="ws-section-title">
     <button
       type="button"
       class="section__header"
+      [attr.aria-expanded]="workspaceOpen()"
       (click)="workspaceOpen.set(!workspaceOpen())"
     >
       <mat-icon
         class="section__chevron"
         [fontIcon]="workspaceOpen() ? 'expand_more' : 'chevron_right'"
+        aria-hidden="true"
       ></mat-icon>
-      <span class="section__title">SCHUSTER-PHILLIP</span>
+      <span class="section__title" id="ws-section-title">SCHUSTER-PHILLIP</span>
     </button>
 
     @if (workspaceOpen()) {
@@ -24,67 +26,81 @@
     }
   </section>
 
-  <section class="section">
+  <section class="section" aria-labelledby="outline-section-title">
     <button
       type="button"
       class="section__header"
+      [attr.aria-expanded]="outlineOpen()"
       (click)="outlineOpen.set(!outlineOpen())"
     >
       <mat-icon
         class="section__chevron"
         [fontIcon]="outlineOpen() ? 'expand_more' : 'chevron_right'"
+        aria-hidden="true"
       ></mat-icon>
-      <span class="section__title">OUTLINE</span>
+      <span class="section__title" id="outline-section-title">OUTLINE</span>
     </button>
   </section>
 
-  <section class="section">
+  <section class="section" aria-labelledby="timeline-section-title">
     <button
       type="button"
       class="section__header"
+      [attr.aria-expanded]="timelineOpen()"
       (click)="timelineOpen.set(!timelineOpen())"
     >
       <mat-icon
         class="section__chevron"
         [fontIcon]="timelineOpen() ? 'expand_more' : 'chevron_right'"
+        aria-hidden="true"
       ></mat-icon>
-      <span class="section__title">TIMELINE</span>
+      <span class="section__title" id="timeline-section-title">TIMELINE</span>
     </button>
   </section>
-</aside>
+</nav>
 
 <ng-template #nodes let-items let-depth="depth">
   @for (item of items; track item.name) {
-    <li
-      class="node"
-      [class.node--active]="item.targetId && item.targetId === activeId()"
-      [style.padding-left.px]="depth * 12"
-      (click)="onNodeClick(item)"
-    >
-      @if (item.type === 'folder') {
-        <mat-icon
-          class="node__chevron"
-          [fontIcon]="item.expanded ? 'expand_more' : 'chevron_right'"
-        ></mat-icon>
-        <mat-icon
-          class="node__icon node__icon--folder"
-          [fontIcon]="item.expanded ? 'folder_open' : 'folder'"
-        ></mat-icon>
-      } @else {
-        <span class="node__chevron node__chevron--spacer"></span>
-        <mat-icon
-          class="node__icon"
-          [style.color]="item.iconColor"
-          [fontIcon]="item.icon || 'insert_drive_file'"
-        ></mat-icon>
-      }
-      <span class="node__name">{{ item.name }}</span>
-    </li>
+    <li class="node-item">
+      <button
+        type="button"
+        class="node"
+        [attr.aria-expanded]="item.type === 'folder' ? !!item.expanded : null"
+        [attr.aria-current]="item.targetId && item.targetId === activeId() ? 'true' : null"
+        [class.node--active]="item.targetId && item.targetId === activeId()"
+        [style.padding-left.px]="depth * 12"
+        (click)="onNodeClick(item)"
+      >
+        @if (item.type === 'folder') {
+          <mat-icon
+            class="node__chevron"
+            [fontIcon]="item.expanded ? 'expand_more' : 'chevron_right'"
+            aria-hidden="true"
+          ></mat-icon>
+          <mat-icon
+            class="node__icon node__icon--folder"
+            [fontIcon]="item.expanded ? 'folder_open' : 'folder'"
+            aria-hidden="true"
+          ></mat-icon>
+        } @else {
+          <span class="node__chevron node__chevron--spacer" aria-hidden="true"></span>
+          <mat-icon
+            class="node__icon"
+            [style.color]="item.iconColor"
+            [fontIcon]="item.icon || 'insert_drive_file'"
+            aria-hidden="true"
+          ></mat-icon>
+        }
+        <span class="node__name">{{ item.name }}</span>
+      </button>
 
-    @if (item.type === 'folder' && item.expanded && item.children?.length) {
-      <ng-container
-        *ngTemplateOutlet="nodes; context: { $implicit: item.children, depth: depth + 1 }"
-      ></ng-container>
-    }
+      @if (item.type === 'folder' && item.expanded && item.children?.length) {
+        <ul class="tree tree--nested">
+          <ng-container
+            *ngTemplateOutlet="nodes; context: { $implicit: item.children, depth: depth + 1 }"
+          ></ng-container>
+        </ul>
+      }
+    </li>
   }
 </ng-template>

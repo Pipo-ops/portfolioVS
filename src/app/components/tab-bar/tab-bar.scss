@@ -20,6 +20,10 @@
 }
 
 .tab {
+  appearance: none;
+  border: none;
+  border-right: 1px solid #252526;
+  font-family: inherit;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -27,7 +31,6 @@
   padding: 0 10px;
   background: #2d2d2d;
   color: var(--vscode-text-muted);
-  border-right: 1px solid #252526;
   cursor: pointer;
   font-size: 13px;
   position: relative;
@@ -70,8 +73,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 18px;
-  height: 18px;
+  width: 24px;
+  height: 24px;
   padding: 0;
   border: none;
   background: transparent;
@@ -94,9 +97,6 @@
 }
 
 .breadcrumbs {
-  display: flex;
-  align-items: center;
-  gap: 2px;
   height: 22px;
   padding: 0 12px;
   background: var(--vscode-bg);
@@ -105,12 +105,23 @@
   border-bottom: 1px solid #1f1f1f;
 }
 
-.breadcrumbs__crumb {
-  cursor: pointer;
+.breadcrumbs__list {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  height: 100%;
 }
 
-.breadcrumbs__crumb:hover {
-  color: var(--vscode-text);
+.breadcrumbs__crumb {
+  cursor: default;
+}
+
+.breadcrumbs__sep-wrap {
+  display: inline-flex;
+  align-items: center;
 }
 
 .breadcrumbs__sep {

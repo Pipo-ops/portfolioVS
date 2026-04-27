@@ -1,6 +1,7 @@
 import { NgTemplateOutlet } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { LegalService } from '../../shared/services/legal';
 import { NavigationService } from '../../shared/services/navigation';
 
 export interface FileNode {
@@ -11,6 +12,7 @@ export interface FileNode {
   children?: FileNode[];
   expanded?: boolean;
   targetId?: string;
+  legalDoc?: 'impressum' | 'datenschutz';
 }
 
 @Component({
@@ -21,6 +23,7 @@ export interface FileNode {
 })
 export class Explorer {
   private readonly nav = inject(NavigationService);
+  private readonly legal = inject(LegalService);
 
   protected readonly workspaceOpen = signal(true);
   protected readonly outlineOpen = signal(false);
@@ -51,14 +54,19 @@ export class Explorer {
       ],
     },
     { name: 'README.md', type: 'file', icon: 'description', iconColor: '#519aba', targetId: 'readme' },
-    { name: 'LEGAL.md', type: 'file', icon: 'description', iconColor: '#858585' },
-    { name: 'IMPRINT.md', type: 'file', icon: 'description', iconColor: '#858585' },
+    { name: 'LEGAL.md', type: 'file', icon: 'description', iconColor: '#858585', legalDoc: 'datenschutz' },
+    { name: 'IMPRINT.md', type: 'file', icon: 'description', iconColor: '#858585', legalDoc: 'impressum' },
   ]);
 
   protected onNodeClick(node: FileNode): void {
     if (node.type === 'folder') {
       node.expanded = !node.expanded;
       this.tree.set([...this.tree()]);
+      return;
+    }
+
+    if (node.legalDoc) {
+      this.legal.open(node.legalDoc);
       return;
     }
 

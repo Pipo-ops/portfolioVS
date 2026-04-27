@@ -3,16 +3,15 @@
     <p class="projects__eyebrow">
       <span class="projects__comment">//</span> projects/
     </p>
-    <h2 class="projects__title">Projekte</h2>
-    <p class="projects__lead">
-      Eine Auswahl meiner Arbeiten &mdash; hier wird aus Code ein Produkt, das man anfassen kann.
-    </p>
+    <h2 class="projects__title" id="projects-title">{{ t().title }}</h2>
+    <p class="projects__lead">{{ t().lead }}</p>
   </header>
 
   @for (project of projects; track project.id; let i = $index) {
     <section
       class="project"
       [id]="project.id"
+      [attr.aria-labelledby]="project.id + '-name'"
       [class.project--reverse]="i % 2 === 1"
       [style.--accent]="project.accent"
     >
@@ -39,13 +38,14 @@
               />
             }
             @if (project.images.length > 1) {
-              <div class="project__dots" role="tablist" [attr.aria-label]="'Bilder ' + project.name">
+              <div class="project__dots" role="group" [attr.aria-label]="'Bildauswahl ' + project.name">
                 @for (img of project.images; track img; let j = $index) {
                   <button
                     type="button"
                     class="project__dot-btn"
                     [class.project__dot-btn--active]="j === currentIndex(project)"
-                    [attr.aria-label]="'Bild ' + (j + 1)"
+                    [attr.aria-label]="'Bild ' + (j + 1) + ' von ' + project.images.length"
+                    [attr.aria-pressed]="j === currentIndex(project)"
                     (click)="setActive(project, j)"
                   ></button>
                 }
@@ -57,9 +57,9 @@
 
       <div class="project__body">
         <p class="project__index">0{{ i + 1 }}</p>
-        <h3 class="project__name">{{ project.name }}</h3>
-        <p class="project__tagline">{{ project.tagline }}</p>
-        <p class="project__desc">{{ project.description }}</p>
+        <h3 class="project__name" [id]="project.id + '-name'">{{ project.name }}</h3>
+        <p class="project__tagline">{{ projectText(project.id).tagline }}</p>
+        <p class="project__desc">{{ projectText(project.id).description }}</p>
 
         <ul class="project__stack">
           @for (tech of project.stack; track tech) {
@@ -71,12 +71,12 @@
           @if (project.demoUrl) {
             <a class="btn btn--primary" [href]="project.demoUrl" target="_blank" rel="noopener">
               <mat-icon fontIcon="open_in_new"></mat-icon>
-              <span>Live ansehen</span>
+              <span>{{ t().liveButton }}</span>
             </a>
           } @else {
-            <span class="project__nda" title="Internes Projekt &ndash; nicht &ouml;ffentlich verf&uuml;gbar">
+            <span class="project__nda">
               <mat-icon fontIcon="lock"></mat-icon>
-              <span>Kundenprojekt &mdash; auf Anfrage</span>
+              <span>{{ t().nda }}</span>
             </span>
           }
         </div>

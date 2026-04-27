@@ -1,17 +1,17 @@
-<footer class="statusbar">
+<footer class="statusbar" role="contentinfo" aria-label="Statusleiste">
   <div class="statusbar__group">
-    <span class="item">
-      <mat-icon class="icon" fontIcon="call_split"></mat-icon>
+    <span class="item" aria-label="Git-Branch: main">
+      <mat-icon class="icon" fontIcon="call_split" aria-hidden="true"></mat-icon>
       main
     </span>
-    <span class="item">
-      <mat-icon class="icon" fontIcon="sync"></mat-icon>
+    <span class="item" aria-label="0 Commits voraus, 0 Commits hinten">
+      <mat-icon class="icon" fontIcon="sync" aria-hidden="true"></mat-icon>
       0 &uarr; 0 &darr;
     </span>
-    <span class="item">
-      <mat-icon class="icon icon--error" fontIcon="error"></mat-icon>
+    <span class="item" aria-label="0 Fehler, 0 Warnungen">
+      <mat-icon class="icon icon--error" fontIcon="error" aria-hidden="true"></mat-icon>
       0
-      <mat-icon class="icon icon--warn" fontIcon="warning"></mat-icon>
+      <mat-icon class="icon icon--warn" fontIcon="warning" aria-hidden="true"></mat-icon>
       0
     </span>
   </div>
@@ -22,10 +22,20 @@
     <span class="item">UTF-8</span>
     <span class="item">LF</span>
     <span class="item">
-      <mat-icon class="icon" fontIcon="code"></mat-icon>
+      <mat-icon class="icon" fontIcon="code" aria-hidden="true"></mat-icon>
       TypeScript
     </span>
-    <span class="item">
+    <button
+      type="button"
+      class="item item--toggle"
+      (click)="toggleLang()"
+      [title]="t().toggle.title"
+      [attr.aria-label]="t().toggle.title + ' (aktuell: ' + t().toggle.label + ')'"
+    >
+      <mat-icon class="icon" fontIcon="translate" aria-hidden="true"></mat-icon>
+      {{ t().toggle.label }}
+    </button>
+    <span class="item" aria-hidden="true">
       <mat-icon class="icon" fontIcon="notifications"></mat-icon>
     </span>
   </div>

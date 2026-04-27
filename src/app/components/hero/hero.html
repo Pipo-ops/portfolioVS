@@ -6,38 +6,24 @@
     <div class="hero__text">
       <p class="hero__eyebrow">
         <span class="hero__eyebrow-comment">//</span>
-        {{ role }} aus {{ location }}
+        {{ t().eyebrow }}
       </p>
 
-      <h1 class="hero__title">
-        Hallo, ich bin <span class="hero__name">{{ name }}</span>
+      <h1 class="hero__title" id="readme-title">
+        {{ t().greeting }} <span class="hero__name">{{ name }}</span>
         <span class="hero__wave" aria-hidden="true">👋</span>
       </h1>
 
-      <p class="hero__lead">
-        Ich entwickle moderne Web-Oberfl&auml;chen &mdash; unter anderem mit
-        <span class="hero__accent">Angular</span>,
-        <span class="hero__accent">TypeScript</span> und dem gesamten Frontend-Werkzeugkasten.
-        Jetzt suche ich die passende Gelegenheit, mein Handwerk in einem engagierten Team
-        einzubringen und mit jedem Projekt weiterzuwachsen.
-      </p>
+      <p class="hero__lead" [innerHTML]="t().lead"></p>
 
       <div class="hero__ctas">
-        <a
-          class="btn btn--primary"
-          [href]="'#' + primaryCta.targetId"
-          (click)="scrollTo($event, primaryCta.targetId)"
-        >
-          <span>{{ primaryCta.label }}</span>
-          <mat-icon class="btn__icon" [fontIcon]="primaryCta.icon"></mat-icon>
+        <a class="btn btn--primary" href="#contact" (click)="scrollTo($event, 'contact')">
+          <span>{{ t().ctaPrimary }}</span>
+          <mat-icon class="btn__icon" fontIcon="arrow_forward"></mat-icon>
         </a>
-        <a
-          class="btn btn--ghost"
-          [href]="'#' + secondaryCta.targetId"
-          (click)="scrollTo($event, secondaryCta.targetId)"
-        >
-          <mat-icon class="btn__icon" [fontIcon]="secondaryCta.icon"></mat-icon>
-          <span>{{ secondaryCta.label }}</span>
+        <a class="btn btn--ghost" href="#projects" (click)="scrollTo($event, 'projects')">
+          <mat-icon class="btn__icon" fontIcon="folder_open"></mat-icon>
+          <span>{{ t().ctaSecondary }}</span>
         </a>
       </div>
 
@@ -58,7 +44,11 @@
       <img
         class="hero__photo"
         [src]="photo"
-        [alt]="name"
+        [alt]="'Portr&auml;tfoto von ' + name"
+        width="380"
+        height="380"
+        fetchpriority="high"
+        decoding="async"
         (error)="onImageError($event)"
       />
     </div>

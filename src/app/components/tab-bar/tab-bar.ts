@@ -1,5 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { NavigationService } from '../../shared/services/navigation';
 
 export interface EditorTab {
   id: string;
@@ -9,6 +10,21 @@ export interface EditorTab {
   dirty?: boolean;
 }
 
+const ROOT = 'schuster-phillip';
+
+const BREADCRUMB_MAP: Record<string, string[]> = {
+  readme: [ROOT, 'README.md'],
+  about: [ROOT, 'src', 'about.ts'],
+  skills: [ROOT, 'src', 'skills.json'],
+  'project-petru': [ROOT, 'src', 'projects', 'petru.ts'],
+  'project-join': [ROOT, 'src', 'projects', 'join.ts'],
+  'project-pollo': [ROOT, 'src', 'projects', 'el-pollo-loco.ts'],
+  'project-mietbar': [ROOT, 'src', 'projects', 'mietbar.ts'],
+  contact: [ROOT, 'src', 'contact.ts'],
+  legal: [ROOT, 'LEGAL.md'],
+  imprint: [ROOT, 'IMPRINT.md'],
+};
+
 @Component({
   selector: 'app-tab-bar',
   imports: [MatIconModule],
@@ -16,25 +32,26 @@ export interface EditorTab {
   styleUrl: './tab-bar.scss',
 })
 export class TabBar {
+  private readonly nav = inject(NavigationService);
+
   protected readonly tabs = signal<EditorTab[]>([
     { id: 'readme', name: 'README.md', icon: 'description', iconColor: '#519aba' },
     { id: 'about', name: 'about.ts', icon: 'code', iconColor: '#519aba' },
   ]);
 
-  protected readonly activeId = signal<string>('readme');
+  protected readonly activeId = this.nav.activeId;
 
-  protected readonly breadcrumbs = signal<string[]>(['schuster-phillip', 'README.md']);
+  protected readonly breadcrumbs = computed<string[]>(
+    () => BREADCRUMB_MAP[this.activeId()] ?? [ROOT, 'README.md'],
+  );
 
   protected select(id: string): void {
-    this.activeId.set(id);
+    this.nav.scrollTo(id);
   }
 
-  protected close(event: MouseEvent, id: string): void {
+  protected close(event: Event, id: string): void {
     event.stopPropagation();
     const next = this.tabs().filter((tab) => tab.id !== id);
     this.tabs.set(next);
-    if (this.activeId() === id && next.length) {
-      this.activeId.set(next[0].id);
-    }
   }
 }

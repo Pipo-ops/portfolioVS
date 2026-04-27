@@ -3,11 +3,8 @@
     <p class="skills__eyebrow">
       <span class="skills__comment">//</span> skills.json
     </p>
-    <h2 class="skills__title">Mein Werkzeugkasten</h2>
-    <p class="skills__lead">
-      Technologien, mit denen ich t&auml;glich arbeite &mdash; von der ersten Idee bis zur
-      ausgelieferten Oberfl&auml;che.
-    </p>
+    <h2 class="skills__title" id="skills-title">{{ t().title }}</h2>
+    <p class="skills__lead">{{ t().lead }}</p>
   </header>
 
   <div class="skills__grid">
@@ -21,7 +18,7 @@
       <img class="photo-card__img" [src]="photo" alt="Phillip Schuster" />
       <div class="photo-card__foot">
         <span class="photo-card__ln">1</span>
-        <span class="photo-card__cm">// Immer offen f&uuml;r Neues.</span>
+        <span class="photo-card__cm">{{ t().photoCaption }}</span>
       </div>
     </aside>
 
